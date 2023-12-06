@@ -4855,7 +4855,6 @@ GameObject:
   - component: {fileID: 5812854334187590110}
   - component: {fileID: 1988656474792390669}
   - component: {fileID: 227066284320086926}
-  - component: {fileID: 6662848807667843087}
   m_Layer: 0
   m_Name: "Ar\xE8neSur\xE9leverBase"
   m_TagString: Untagged
@@ -5195,22 +5194,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!208 &6662848807667843087
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883988435178635456}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 12.500001, y: 0.75000006, z: 12.500001}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 22.398, y: 2.457, z: -19.585001}
-  m_TimeToStationary: 0.5
 --- !u!1 &5020621952696703130
 GameObject:
   m_ObjectHideFlags: 0
