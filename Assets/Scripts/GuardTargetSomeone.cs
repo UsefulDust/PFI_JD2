@@ -4,7 +4,8 @@ using UnityEngine.AI;
 
 public class GuardTargetSomeone : MonoBehaviour
 {
-    [SerializeField] Transform targetTransform;
+    [SerializeField] Transform targetPlayerTransform;
+    [SerializeField] Transform targetOpponentTransform;
     NavMeshAgent navMeshAgent;
     void Awake()
     {
@@ -19,7 +20,7 @@ public class GuardTargetSomeone : MonoBehaviour
     {
         while (true)
         {
-            navMeshAgent.destination = targetTransform.position;
+            navMeshAgent.destination = targetPlayerTransform.position;
             yield return new WaitForSeconds(0.5f);
         }
     }
