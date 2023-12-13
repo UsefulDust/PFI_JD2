@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JeuCarte.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: "Assets/Scenes/FinPartie\xC9cran.unity"
+    guid: ef7eb71a9e862834c977be215ac91b11
   m_configObjects: {}
