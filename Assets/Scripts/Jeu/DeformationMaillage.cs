@@ -12,7 +12,7 @@ public class DeformationMaillage : MonoBehaviour
     Mesh mesh;
     float elapsedTime = 0;
 
-    int compteur2sec = 0;
+    int compteurSec = 0;
     Vector3[] verticesModified;
 
     private void Awake()
@@ -26,9 +26,9 @@ public class DeformationMaillage : MonoBehaviour
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= intervaleEnSecondes)
         {
-            compteur2sec++;
+            compteurSec++;
 
-            if (compteur2sec % 2 == 0)
+            if (compteurSec % 2 == 0)
             {
                 ModifierVerticesSelonTemps(true);
             }
