@@ -10,7 +10,6 @@ public class DeformationMaillage : MonoBehaviour
     [SerializeField] float deformationMultiplier = 3;
 
     Mesh mesh;
-    MeshCollider meshCollider;
     float elapsedTime = 0;
 
     int compteur2sec = 0;
@@ -19,7 +18,6 @@ public class DeformationMaillage : MonoBehaviour
     private void Awake()
     {
         mesh = GetComponent<MeshFilter>().mesh;
-        //meshCollider = GetComponent<MeshCollider>();
         verticesModified = mesh.vertices;
     }
 
@@ -46,7 +44,6 @@ public class DeformationMaillage : MonoBehaviour
     void RecalculerMesh()
     {
         mesh.vertices = verticesModified;
-        //meshCollider.sharedMesh = mesh;
         mesh.RecalculateNormals();
     }
 
