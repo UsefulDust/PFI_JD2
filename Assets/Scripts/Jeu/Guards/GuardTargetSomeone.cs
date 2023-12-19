@@ -7,8 +7,10 @@ public class GuardTargetSomeone : MonoBehaviour
 {
     [SerializeField] Transform targetPlayerTransform;
     [SerializeField] Transform targetOpponentTransform;
-    [SerializeField] float runningSpeed = 10;
+    [SerializeField] float runningSpeed = 8;
     [SerializeField] CollisionDetection collisionScript;
+    [SerializeField] CharacterController characterController;
+    [SerializeField] PlayerMovement playerMovement;
     float defaultSpeed;
     NavMeshAgent navMeshAgent;
     Animator animator;
@@ -74,7 +76,8 @@ public class GuardTargetSomeone : MonoBehaviour
     {
         if (Vector3.Distance(gameObject.transform.position, targetPlayerTransform.position) < 2.35f)
         {
-            // Désactiver les commandes et le contrôle de la caméra du joueur
+            //characterController.enabled = false;
+            //playerMovement.e = false;
             transform.LookAt(targetPlayerTransform, Vector3.up);
             //transform.rotation = Quaternion.identity;
             Camera.main.fieldOfView = 95;
