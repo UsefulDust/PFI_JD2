@@ -68,7 +68,8 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Jump();
         CameraRotation();
-        Vector3 direction = new Vector3(velocityX, 0, velocityZ);
+        Vector3 dition = new Vector3(velocityX, 0, velocityZ);
+        Vector3 direction = transform.forward * velocityZ + transform.right * velocityX;
         if (sprint.ReadValue<float>() > 0.1f && direction.z > 1.1f)
         {
             cc.Move(new Vector3(direction.x * maximumRunVelocity, 0, direction.z) * Time.deltaTime * speed);
