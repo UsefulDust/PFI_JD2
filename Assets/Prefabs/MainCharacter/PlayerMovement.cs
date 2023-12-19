@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     PlayerInput playerInput;
     InputAction move;
 
+    Animator animator;
+
     void Awake()
     {
         playerInput = new PlayerInput();
+        animator = GetComponentInChildren<Animator>();
     }
     void OnEnable()
     {
@@ -23,5 +26,14 @@ public class PlayerMovement : MonoBehaviour
     {
         // deactivate player input
         move.Disable();
+    }
+    void Update()
+    {
+        Move();
+    }
+
+    void Move()
+    {
+
     }
 }
