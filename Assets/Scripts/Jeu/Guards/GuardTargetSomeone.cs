@@ -76,6 +76,8 @@ public class GuardTargetSomeone : MonoBehaviour
     {
         if (Vector3.Distance(gameObject.transform.position, targetPlayerTransform.position) < 2.35f && !endGame)
         {
+            playerMovement.enabled = false;
+            characterController.enabled = false;
             transform.LookAt(targetPlayerTransform, Vector3.up);
             //transform.rotation = Quaternion.identity;
             Camera.main.fieldOfView = 95;
