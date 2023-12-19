@@ -22,6 +22,8 @@ public class StatusFinPartie : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (Perdant.LePerdant == "Opponent")
         {
             victoire = true;
