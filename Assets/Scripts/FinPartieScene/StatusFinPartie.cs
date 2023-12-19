@@ -22,6 +22,11 @@ public class StatusFinPartie : MonoBehaviour
 
     private void Awake()
     {
+        if (Perdant.LePerdant == "Opponent")
+        {
+            victoire = true;
+        }
+
         if (victoire)
         {
             défaiteUI.SetActive(false);

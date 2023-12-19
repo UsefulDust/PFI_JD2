@@ -10,10 +10,13 @@ public class GuardGestionComponent : MonoBehaviour
 
     [SerializeField] GuardTargetSomeone[] guardTargetSomeoneScripts;
     [SerializeField] GuardPatrol[] guardPatrolScripts;
-    
+
+    public bool victoireDétectée = false;
     // 0 = joueur et 1 = adversaire
     string[] cible = new string[2];
     RaycastHit hit;
+    bool chercherPointPlusProche = false;
+    int count = 0;
     void FixedUpdate()
     {
         if (Physics.Raycast(player.transform.position, Vector3.down, out hit, 25))
@@ -22,7 +25,10 @@ public class GuardGestionComponent : MonoBehaviour
 
             if (hit.transform.tag == "Gazon")
             {
-                cible[0] = "Joueur";
+                if (!victoireDétectée)
+                    cible[0] = "Joueur";
+                else
+                    cible[0] = null;
             }
             else if (hit.transform.tag == "Arène")
             {
@@ -37,7 +43,10 @@ public class GuardGestionComponent : MonoBehaviour
 
             if (hit.transform.tag == "Gazon")
             {
-                cible[1] = "Adversaire";
+                if (!victoireDétectée)
+                    cible[1] = "Adversaire";
+                else
+                    cible[1] = null;
             }
             else if (hit.transform.tag == "Arène")
             {
@@ -47,6 +56,7 @@ public class GuardGestionComponent : MonoBehaviour
 
         if (cible.Contains("Adversaire") && cible.Contains("Joueur"))
         {
+            chercherPointPlusProche |= true;
             foreach (var patrolScript in guardPatrolScripts)
             {
                 patrolScript.enabled = false;
@@ -59,6 +69,7 @@ public class GuardGestionComponent : MonoBehaviour
         }
         else if (cible.Contains("Joueur"))
         {
+            chercherPointPlusProche = true;
             foreach (var patrolScript in guardPatrolScripts)
             {
                 patrolScript.enabled = false;
@@ -71,6 +82,7 @@ public class GuardGestionComponent : MonoBehaviour
         }
         else if (cible.Contains("Adversaire"))
         {
+            chercherPointPlusProche = true;
             foreach (var patrolScript in guardPatrolScripts)
             {
                 patrolScript.enabled = false;
@@ -85,6 +97,16 @@ public class GuardGestionComponent : MonoBehaviour
         {
             foreach (var patrolScript in guardPatrolScripts)
             {
+                if (chercherPointPlusProche)
+                {
+                    count++;
+                    patrolScript.AllerPlusProchePointPatrouille();
+                    if (count >= guardPatrolScripts.Length)
+                    {
+                        chercherPointPlusProche = false;
+                        count = 0;
+                    }
+                }
                 patrolScript.enabled = true;
             }
             foreach (var targetSomeoneScript in guardTargetSomeoneScripts)

@@ -13,21 +13,23 @@ public class GuardPatrol : MonoBehaviour
     int currentPatrolPointIndex = 0;
 
     float plusProche = 100000000;
-    
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
-        for (int i = 0;i < patrolPoints.Length; i++)
+        AllerPlusProchePointPatrouille();
+    }
+
+    public void AllerPlusProchePointPatrouille()
+    {
+        for (int i = 0; i < patrolPoints.Length; i++)
         {
             var distance = Vector3.Distance(transform.position, patrolPoints[i].position);
-            if (distance < plusProche) 
-            { 
+            if (distance < plusProche)
+            {
                 currentPatrolPointIndex = i;
                 plusProche = distance;
             }
         }
-        
     }
 
     void Update()
@@ -35,7 +37,8 @@ public class GuardPatrol : MonoBehaviour
         agent.speed = speed;
         if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPointIndex].position) >= 0.3f)
         {
-            agent.SetDestination(patrolPoints[currentPatrolPointIndex].position);
+            if (agent.isActiveAndEnabled)
+                agent.SetDestination(patrolPoints[currentPatrolPointIndex].position);
         }
         else 
             currentPatrolPointIndex = (currentPatrolPointIndex + 1) % patrolPoints.Length;
