@@ -78,10 +78,10 @@ public class GuardTargetSomeone : MonoBehaviour
         {
             playerMovement.deactivateMovement();
             playerMovement.enabled = false;
-            characterController.enabled = false;
+            //characterController.enabled = false;
             transform.LookAt(targetPlayerTransform, Vector3.up);
             //transform.rotation = Quaternion.identity;
-            Camera.main.fieldOfView = 95;
+            Camera.main.fieldOfView = 110;
             Camera.main.transform.LookAt(gameObject.transform, Vector3.up);
             collisionScript.Collision(gameObject.name, targetPlayerTransform.tag, navMeshAgent);
             endGame = true;
