@@ -173,4 +173,11 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, cameraRotation.y, 0));
         cam.transform.rotation = Quaternion.Euler(cameraRotation);
     }
+    public void deactivateMovement()
+    {
+        animator.SetFloat("Velocity Z", 0);
+        animator.SetFloat("Velocity X", 0);
+        animator.enabled = false;
+        this.enabled = false;
+    }
 }
