@@ -76,12 +76,14 @@ public class GuardTargetSomeone : MonoBehaviour
         {
             // Désactiver les commandes et le contrôle de la caméra du joueur
             transform.LookAt(targetPlayerTransform, Vector3.up);
+            transform.rotation = new Quaternion(0, gameObject.transform.rotation.y, 0, 0);
             Camera.main.transform.LookAt(gameObject.transform, Vector3.up);
             collisionScript.Collision(gameObject.name, targetPlayerTransform.tag, navMeshAgent);
         }
         if (Vector3.Distance(gameObject.transform.position, targetOpponentTransform.position) < 2.35f)
         {
-            transform.LookAt(targetOpponentTransform, Vector3.up);
+            transform.LookAt(targetOpponentTransform, Vector3.up);     
+            transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
             collisionScript.Collision(gameObject.name, targetOpponentTransform.tag, navMeshAgent);
         }
     }
