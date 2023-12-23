@@ -7,23 +7,27 @@ public class EnnemiBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject Player;
 
-    NavMeshAgent Agent;
-
+    Node root;
     void Start()
     {
-        Agent = GetComponent<NavMeshAgent>();
-
         TaskBT[] task0 = new TaskBT[]
         {
-            new Follow(Player, Agent)
+            new Follow(Player, gameObject)
         };
         TaskBT[] task1 = new TaskBT[]
         {
-
+            new Punch()
         };
         TaskNode followNode = new TaskNode("followNode0", task0);
+        TaskNode punchNode = new TaskNode("punchNode0", task1);
         // punch
 
-        Node seq1 = new Sequence("seq0", new[] { followNode });
+        Node seq0 = new Sequence("seq0", new[] { followNode, punchNode });
+
+        root = seq0;
+    }
+    private void Update()
+    {
+        root.Evaluate();
     }
 }

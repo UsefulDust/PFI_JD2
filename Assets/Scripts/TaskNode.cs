@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -107,9 +108,9 @@ public class Follow : TaskBT
 {
     GameObject gameobjectToFollow { get; set; }
 
-    NavMeshAgent Agent { get; set; }
+    GameObject Agent { get; set; }
 
-    public Follow(GameObject player, NavMeshAgent agent)
+    public Follow(GameObject player, GameObject agent)
     {
         gameobjectToFollow = player;
         Agent = agent;
@@ -117,12 +118,19 @@ public class Follow : TaskBT
 
     public override TaskState Execute()
     {
-        Agent.destination = gameobjectToFollow.transform.position;
-
-        if (Vector3.Distance(gameobjectToFollow.transform.position, Agent.transform.position) <= Agent.stoppingDistance)
+        if (Vector3.Distance(gameobjectToFollow.transform.position, Agent.transform.position) <= 1.5f)
         {
             return TaskState.Success;
         }
+        Agent.transform.position = Vector3.MoveTowards(Agent.transform.position, gameobjectToFollow.transform.position - new Vector3(0, 1, 0), 2 * Time.deltaTime);
         return TaskState.Running;
+    }
+}
+public class Punch : TaskBT
+{
+    public override TaskState Execute()
+    {
+        Debug.Log("punch");
+        return TaskState.Success;
     }
 }
